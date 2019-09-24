@@ -6,7 +6,6 @@ const csv = require('csv-parser');
 const app = express();
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
-//app.set('view options', { layout: 'home' });
 app.use(express.static('static'));
 
 console.log("App inciada correctamente, leyendo CSV...");
@@ -32,6 +31,10 @@ fs.createReadStream("data1.csv")
 app.get('/', (req, res) => {
 	res.setHeader('Content-Type', 'text/html');
 	res.render("main",{ layout: 'home' });
+});
+
+app.post('/', (req, res) => {
+	res.send({"message":"Error! El sistema todavía no está disponible"});
 });
 
 app.get('/csv', (req, res) => {
