@@ -7,12 +7,14 @@ const app = express();
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.use(express.static('static'));
+app.use(express.urlencoded({extended:true}));
 
 console.log("App inciada correctamente, leyendo CSV...");
 var file = [];
 var errors = [];
+var base = [];
 fs.createReadStream("data1.csv")
-.pipe(csv())
+.pipe(csv({ separator: ',' }))
 .on('data', function(data){
 	try {
 		file.push(data);
@@ -22,6 +24,10 @@ fs.createReadStream("data1.csv")
 	}
 })
 .on('end',function(){
+	for(var i in file){
+		file[i].palabras = file[i].palabras.toUpperCase().split(";");
+		base.push({nombre:file[i].nombre,cant:0});
+	}
 	console.log("Lectura completada, ejecutando server...");
 	app.listen(80, () => {
 		console.log('Server en puerto 80')
@@ -34,10 +40,47 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-	res.send({"message":"Error! El sistema todavía no está disponible"});
+	var words = req.body.words.toUpperCase().split(",");
+	var out = JSON.parse(JSON.stringify(base));
+	for(const o in file){
+		for(const p in file[o].palabras){
+			for(const i in words){
+				if(file[o].palabras[p]==words[i] || (file[o].palabras[p].includes(words[i]) && words[i].length>3)){
+					out[o].cant++;
+				}
+			}
+		}
+	}
+	out = out.filter((v) => v.cant > 0);
+	out.sort(function ( a, b ){ return b.cant - a.cant; });
+	out = out.slice(0,5);
+	res.setHeader('Content-Type', 'text/html');
+	res.render("out",{ layout: 'home', array: out});
+	//hacer más lindo el template, poner la primera grande, etc
 });
 
 app.get('/csv', (req, res) => {
 	res.setHeader('Content-Type', 'text/html');
 	res.render("csvout",{layout: 'home',file:JSON.stringify(file),errors:JSON.stringify(errors)});
+});
+app.get('/reload', (req, res) => {
+	console.log("Releyendo csv");
+	file = [];
+	errors = [];
+	fs.createReadStream("data1.csv")
+	.pipe(csv())
+	.on('data', function(data){
+		try {
+			file.push(data);
+		}
+		catch(err) {
+			errors.push(err);
+		}
+	}).on('end',function(){
+		for(const i in file){
+			file[i].palabras = file[i].palabras.split(";");
+		}
+		console.log("Lectura completada!");
+		res.redirect("/csv");
+	});
 });
