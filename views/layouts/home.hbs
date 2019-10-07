@@ -14,21 +14,21 @@
                 text-align: center;
                 margin: auto;
             }
-            input[type=submit] {
+            input[type=submit], button {
                 background-color: lightgreen;
                 padding: 10px;
                 border: 0;
                 font-weight: bold;
                 font-size: 18px;
                 cursor: pointer;
-                width: 100px;
+                min-width: 100px;
                 box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
             }
             textarea {
                 resize: none;
                 border: 0;
             }
-            #main {
+            .main {
                 margin: auto;
                 width: min-content;
                 min-width: 400px;
@@ -36,14 +36,24 @@
                 padding: 10px;
                 box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
             }
+            .topbuttons {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+            }
             h1 {
                 color: white;
             }
         </style>
     </head>
     <body>
+        <div class="topbuttons">
+            <button onclick="location.href='/';">Inicio</button>
+            <button onclick="location.href='/csv';">Ver datos</button>
+            <button onclick="location.href='/reload';">Recargar datos</button>
+        </div>
         <h1>Música y datos</h1>
-        <div id="main">
+        <div class="main">
             {{{body}}}
         </div>
     </body>
