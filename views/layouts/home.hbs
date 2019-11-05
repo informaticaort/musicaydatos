@@ -44,17 +44,38 @@
             h1 {
                 color: white;
             }
+            label {
+                font-weight: bold;
+            }
+            input[type=text]{
+                width: 90%;
+                border: 0;
+            }
+            #footer {
+                font-style: italic;
+                padding: 5px;
+                background-color: lightblue;
+            }
+            #footerdiv {
+                margin: 15px;
+            }
+            a {
+                color: royalblue;
+            }
         </style>
     </head>
     <body>
         <div class="topbuttons">
             <button onclick="location.href='/';">Inicio</button>
-            <button onclick="location.href='/csv';">Ver datos</button>
-            <button onclick="location.href='/reload';">Recargar datos</button>
+            {{!-- <button onclick="location.href='/csv';">Ver datos</button>
+            <button onclick="location.href='/reload';">Recargar datos</button>--}}
         </div>
         <h1>Música y datos</h1>
         <div class="main">
             {{{body}}}
+        </div>
+        <div id="footerdiv">
+            <span id="footer">-Proyecto creado por la orientación de Informática para mostrar en OrtArt-</span>
         </div>
     </body>
 </html>

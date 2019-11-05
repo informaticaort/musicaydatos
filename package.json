@@ -1,5 +1,5 @@
 {
-  "name": "musicaydatos",
+  "name": "mydjs",
   "version": "1.0.0",
   "description": "Proyecto Música y Ciencia de Datos",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "author": "Ort",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "csv-parser": "^2.3.0",
     "express": "^4.17.1",
