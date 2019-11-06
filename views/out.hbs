@@ -1,4 +1,4 @@
 <h2>Canciones sugeridas</h2>
 {{#each array}}
-  <a href="{{this.linkhttp}}" title="Porque dijiste: {{#each this.cant}}{{this}}, {{/each}}" style="font-size:{{this.size}}px">{{this.nombre}}</a><br>En {{this.album}}<br>
+  <a href="{{this.linkhttp}}" style="font-size:{{this.size}}px">{{this.nombre}}</a><br>Album: {{this.album}}<br>Porque dijiste: {{this.cant}}<br>
 {{/each}}

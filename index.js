@@ -34,7 +34,7 @@ fs.createReadStream(filename)
 		console.log('Server en puerto 80')
 	}).on("error", function(err){
         if(err.errno === 'EADDRINUSE') {
-			console.log("Error! El puerto "+port+" está ocupado, usando puerto alternativo (8080)");
+			console.log("Error! El puerto 80 está ocupado, usando puerto alternativo (8080)");
 			app.listen(8080, () => {
 				console.log('Server en puerto 8080')
 			}).on("error", function(err){
@@ -64,7 +64,7 @@ app.post('/', (req, res) => {
 	for(const o in file){
 		for(const p in file[o].StopWords){
 			for(const i in words){
-				if(file[o].StopWords[p]==words[i] || (file[o].StopWords[p].includes(words[i]) && words[i].length>3)){
+				if(file[o].StopWords[p]==words[i] || (file[o].StopWords[p].startsWith(words[i]) && words[i].length>3)){
 					out[o].cant.push(file[o].StopWords[p].toLowerCase());
 				}
 			}
@@ -75,6 +75,7 @@ app.post('/', (req, res) => {
 	out = out.slice(0,5);
 	for(const i in out){
 		out[i].cant = Array.from(new Set(out[i].cant));
+		out[i].cant = out[i].cant.join(",");
 	}
 	if(out[0])out[0].size = "50";
 	if(out[1])out[1].size = "40";
