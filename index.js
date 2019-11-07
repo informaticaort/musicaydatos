@@ -64,7 +64,7 @@ app.post('/', (req, res) => {
 	for(const o in file){
 		for(const p in file[o].StopWords){
 			for(const i in words){
-				if(file[o].StopWords[p]==words[i] || (file[o].StopWords[p].startsWith(words[i]) && words[i].length>3)){
+				if(file[o].StopWords[p]==words[i] || (words[i].startsWith(file[o].StopWords[p]) && words[i].length>3)){
 					out[o].cant.push(file[o].StopWords[p].toLowerCase());
 				}
 			}
