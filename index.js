@@ -75,7 +75,7 @@ app.post('/', (req, res) => {
 	out = out.slice(0,5);
 	for(const i in out){
 		out[i].cant = Array.from(new Set(out[i].cant));
-		out[i].cant = out[i].cant.join(",");
+		out[i].cant = out[i].cant.join(", ");
 	}
 	if(out[0])out[0].size = "50";
 	if(out[1])out[1].size = "42";
