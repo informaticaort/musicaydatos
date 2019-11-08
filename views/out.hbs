@@ -1,4 +1,11 @@
-<h2>Canciones sugeridas</h2>
-{{#each array}}
-  <a href="{{this.linkhttp}}" style="font-size:{{this.size}}px">{{this.nombre}}</a><br>Album: {{this.album}}<br>Porque dijiste: {{this.cant}}<br>
-{{/each}}
+{{#if array.length}}
+  <h2>Canciones sugeridas</h2>
+  {{#each array}}
+    <a href="{{this.linkhttp}}" target="_blank" style="font-size:{{this.size}}px"><img src="{{this.linkcover}}" title="Album: {{this.album}}" style="height:{{this.size}}px">{{this.nombre}}</a><br>Album: {{this.album}}<br>Porque dijiste: {{this.cant}}<br>
+  {{/each}}
+    <br>
+    <i>Si esto no resultó como esperabas, podés <a href="#" onclick="history.back()">Volver a intentar</a>.</i>
+{{else}}
+  <h2>No se encontraron canciones :(</h2>
+  <a href="#" onclick="history.back()">Volver a intentar</a>
+{{/if}}

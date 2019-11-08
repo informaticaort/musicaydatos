@@ -25,9 +25,9 @@ fs.createReadStream(filename)
 	}
 })
 .on('end',function(){
-	for(var i in file){
+	for(const i in file){
 		file[i].StopWords = file[i].StopWords.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[!#$%&=?¿\[\]¡*¨´{}+-]/g,'').split(/[\s,;:._\/\(\)\"\'-]+/);
-		base.push({nombre:file[i].Canciones,album:file[i].Album,linkhttp:file[i].Link,cant:[]});
+		base.push({nombre:file[i].Canciones,album:file[i].Album,linkhttp:file[i].AudioPrueba,linkcover:file[i].CoverArt,cant:[]});
 	}
 	console.log("Lectura completada, ejecutando server...");
 	app.listen(80, () => {
@@ -78,10 +78,10 @@ app.post('/', (req, res) => {
 		out[i].cant = out[i].cant.join(",");
 	}
 	if(out[0])out[0].size = "50";
-	if(out[1])out[1].size = "40";
-	if(out[2])out[2].size = "30";
-	if(out[3])out[3].size = "20";
-	if(out[4])out[4].size = "15";
+	if(out[1])out[1].size = "42";
+	if(out[2])out[2].size = "34";
+	if(out[3])out[3].size = "26";
+	if(out[4])out[4].size = "20";
 	res.setHeader('Content-Type', 'text/html');
 	res.render("out",{ layout: 'home', array: out});
 });
@@ -107,7 +107,7 @@ app.get('/reload', (req, res) => {
 		base = [];
 		for(const i in file){
 			file[i].StopWords = file[i].StopWords.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").replace(/[!#$%&=?¿\[\]¡*¨´{}+-]/g,'').split(/[\s,;:._\/\(\)\"\'-]+/);
-			base.push({nombre:file[i].Canciones,album:file[i].Album,linkhttp:file[i].Link,cant:[]});
+			base.push({nombre:file[i].Canciones,album:file[i].Album,linkhttp:file[i].AudioPrueba,linkcover:file[i].CoverArt,cant:[]});
 		}
 		console.log("Lectura completada!");
 		res.redirect("/csv");

@@ -14,6 +14,23 @@
                 text-align: center;
                 margin: auto;
             }
+            h1 {
+                color: white;
+            }
+            label {
+                font-weight: bold;
+            }
+            input[type=text]{
+                width: 90%;
+                border: 0;
+            }
+            img {
+                padding-right: 8px;
+	            vertical-align: middle;
+            }
+            a {
+                color: royalblue;
+            }
             input[type=submit], button {
                 background-color: lightgreen;
                 padding: 10px;
@@ -25,31 +42,17 @@
                 box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.75);
             }
             textarea {
+                width: 100%;
                 resize: none;
                 border: 0;
             }
             .main {
                 margin: auto;
                 width: min-content;
-                min-width: 400px;
+                min-width: 500px;
                 background-color: lightgray;
                 padding: 10px;
                 box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
-            }
-            .topbuttons {
-                position: fixed;
-                top: 10px;
-                left: 10px;
-            }
-            h1 {
-                color: white;
-            }
-            label {
-                font-weight: bold;
-            }
-            input[type=text]{
-                width: 90%;
-                border: 0;
             }
             #footer {
                 font-style: italic;
@@ -59,23 +62,25 @@
             #footerdiv {
                 margin: 15px;
             }
-            a {
-                color: royalblue;
-            }
+            {{!-- #topbuttons {
+                position: fixed;
+                top: 10px;
+                left: 10px;
+            }--}}
         </style>
     </head>
     <body>
-        <div class="topbuttons">
+        {{!-- <div id="topbuttons">
             <button onclick="location.href='/';">Inicio</button>
-            {{!-- <button onclick="location.href='/csv';">Ver datos</button>
-            <button onclick="location.href='/reload';">Recargar datos</button>--}}
-        </div>
+            <button onclick="location.href='/csv';">Ver datos</button>
+            <button onclick="location.href='/reload';">Recargar datos</button>
+        </div>--}}
         <h1>Música y datos</h1>
         <div class="main">
             {{{body}}}
         </div>
         <div id="footerdiv">
-            <span id="footer">-Proyecto creado por la orientación de Informática para mostrar en OrtArt-</span>
+            <span id="footer">-Proyecto creado por Ort Informática en 2019. <a href="https://github.com/informaticaort/musicaydatos">Ver en GitHub</a>-</span>
         </div>
     </body>
 </html>
