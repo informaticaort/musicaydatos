@@ -7,8 +7,8 @@ Este proyecto es una página web que, al contarle un poco sobre uno, te recomien
 
 Para lograr esto, se tuvo que crear una base de datos con los puntos clave de las canciones, o sea, sus palabras más importantes y repetidas. Después, ese archivo se carga directamente en el código del sitio web, que se encarga de buscar las palabras introducidas en las palabras clave de las cien canciones cargadas en el archivo.
 
-Finalmente, este también se encarga del diseño gráfico de la página, así como también de la forma de mostrar las preguntas y las canciones elegidas (con sus miniaturas y vista previa), estando desarrollado especialmente para además soportar facilmente futuras mejoras.
-### Tecnologias usadas
+Finalmente, este también se encarga del diseño gráfico de la página, así como también de la forma de mostrar las preguntas y las canciones elegidas (con sus miniaturas y vista previa), estando desarrollado especialmente para además soportar fácilmente futuras mejoras.
+### Tecnologías usadas
 * Armado de la base de datos: Python3, Spotipy, Jupyter Notebooks y CSV.
 * Análisis de datos y montaje de la página web: Node.js, ExpressJS, HTML+CSS, Handlebars Templating y CSV parser.
 ## Páginas (rutas) del sitio
